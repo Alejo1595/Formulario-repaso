@@ -1,0 +1,83 @@
+<form
+  [formGroup]="formulario"
+  autocomplete="off"
+  (ngSubmit)="submitFormulario()"
+  #formu=ngForm
+>
+  <!-- contenedor principal -->
+  <div
+    style="width: 600px; margin: 20px auto"
+    fxLayout="column"
+    fxLayoutGap="20px"
+  >
+    <!-- Contenedor izquierdo || Nombre personaje || Ciudad de origen -->
+    <div fxLayout="row" fxLayoutGap="20px">
+      <!-- Nombre del personaje -->
+      <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
+        <mat-label>Nombre del personaje</mat-label>
+        <input matInput formControlName="nombrePersonaje" />
+        <mat-error *ngFor="let validacion of validaciones.nombrePersonaje">
+          <mat-error
+            *ngIf="formulario.get('nombrePersonaje').hasError(validacion.tipo)"
+          >
+            {{ validacion.mensaje }}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Ciudad de origen -->
+      <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
+        <mat-label>Ciudad de origen</mat-label>
+        <input matInput formControlName="ciudadDeOrigen" />
+      </mat-form-field>
+    </div>
+
+    <!-- Contenedor derecho || Tipo de personaje || Editorial -->
+    <div fxLayout="row" fxLayoutGap="20px">
+      <!-- Tipo de personaje -->
+      <mat-form-field fxFlex="1 1 calc(50% - 20px)">
+        <mat-label>Tipo de personaje</mat-label>
+        <mat-select formControlName="tipoPersonaje">
+          <mat-option
+            *ngFor="let personaje of tipoPersonaje"
+            [value]="personaje.id"
+          >
+            {{ personaje.descripcion }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Editorial -->
+      <mat-form-field fxFlex="1 1 calc(50% - 20px)">
+        <mat-label>Editorial</mat-label>
+        <mat-select formControlName="editorial">
+          <mat-option
+            *ngFor="let editorial of editoriales"
+            [value]="editorial.id"
+          >
+            {{ editorial.descripcion }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Biografia -->
+    <mat-form-field>
+      <mat-label>Biografia</mat-label>
+      <textarea matInput formControlName="biografia"></textarea>
+    </mat-form-field>
+
+    <!-- Botones -->
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <button mat-raised-button color="primary">Guardar</button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="limpiarFormulario()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</form>
