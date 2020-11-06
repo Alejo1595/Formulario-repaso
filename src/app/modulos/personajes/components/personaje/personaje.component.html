@@ -2,7 +2,11 @@
 <!-- COMPONENTE PADRE -->
 
 <!-- formulario -->
-<app-formulario-personaje></app-formulario-personaje>
+<app-formulario-personaje
+  [inTiposDePersonajes]="personajeService.tiposDePersonajes"
+  [inListaEditoriales]="personajeService.listaEditoriales"
+  (outDatosPersonajes)="onDatosPersonajes($event)"
+></app-formulario-personaje>
 
 <!-- Tabla -->
 <!-- <app-tabla-personaje></app-tabla-personaje> -->

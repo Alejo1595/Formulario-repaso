@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { PersonajesRoutingModule } from './personajes-routing.module';
 
@@ -23,6 +25,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
+// Flexlayout
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -36,6 +40,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     PersonajesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
