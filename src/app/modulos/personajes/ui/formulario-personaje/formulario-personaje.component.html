@@ -1,149 +1,212 @@
-<form
-  [formGroup]="formulario"
-  autocomplete="off"
-  (ngSubmit)="submitFormulario()"
-  #formu="ngForm"
->
-  <!-- contenedor principal -->
-  <div
-    style="width: 600px; margin: 20px auto"
-    fxLayout="column"
-    fxLayoutGap="20px"
+<app-contenedor [inTituloCabecera]="'Formulario personajes'">
+  <form
+    [formGroup]="formulario"
+    autocomplete="off"
+    (ngSubmit)="submitFormulario()"
+    #formu="ngForm"
   >
-    <!-- Contenedor izquierdo || Nombre personaje || Ciudad de origen -->
+    <!-- Contenedor Principal -->
     <div fxLayout="row" fxLayoutGap="20px">
-      <!-- Nombre del super heroe -->
-      <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
-        <mat-label>Nombre del personaje</mat-label>
-        <input matInput formControlName="nombreSuperHeroe" />
-        <mat-error *ngFor="let validacion of validaciones.nombreSuperHeroe">
-          <mat-error
-            *ngIf="formulario.get('nombreSuperHeroe').hasError(validacion.tipo)"
-          >
-            {{ validacion.mensaje }}
-          </mat-error>
-        </mat-error>
-      </mat-form-field>
-
-      <!-- Nombre del personaje -->
-      <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
-        <mat-label>Ciudad de origen</mat-label>
-        <input matInput formControlName="nombrePersonaje" />
-        <mat-error *ngFor="let validacion of validaciones.nombrePersonaje">
-          <mat-error
-            *ngIf="formulario.get('nombrePersonaje').hasError(validacion.tipo)"
-          >
-            {{ validacion.mensaje }}
-          </mat-error>
-        </mat-error>
-      </mat-form-field>
-
-      <!-- Fecha de la primera introduccion -->
-      <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
-        <mat-label>Fecha de la primera introduccion </mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker"
-          formControlName="fechaPrimeraAparicion"
-          readonly
-        />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error
-          *ngFor="let validacion of validaciones.fechaPrimeraAparicion"
-        >
-          <mat-error
-            *ngIf="
-              formulario.get('fechaPrimeraAparicion').hasError(validacion.tipo)
-            "
-          >
-            {{ validacion.mensaje }}
-          </mat-error>
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <!-- Contenedor derecho || Tipo de personaje || Editorial -->
-    <div fxLayout="row" fxLayoutGap="20px">
-      <!-- Ciudad de origen -->
-      <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
-        <mat-label>Ciudad de origen</mat-label>
-        <input matInput formControlName="ciudadOrigen" />
-        <mat-error *ngFor="let validacion of validaciones.ciudadOrigen">
-          <mat-error
-            *ngIf="formulario.get('ciudadOrigen').hasError(validacion.tipo)"
-          >
-            {{ validacion.mensaje }}
-          </mat-error>
-        </mat-error>
-      </mat-form-field>
-
-      <!-- Tipo de personaje -->
-      <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
-        <mat-label>Tipo de personaje</mat-label>
-        <mat-select formControlName="tipoPersonaje">
-          <mat-option
-            *ngFor="let personaje of inTiposDePersonajes"
-            [value]="personaje.id"
-          >
-            {{ personaje.descripcion }}
-          </mat-option>
-        </mat-select>
-
-        <mat-error *ngFor="let validacion of validaciones.tipoPersonaje">
-          <mat-error
-            *ngIf="formulario.get('tipoPersonaje').hasError(validacion.tipo)"
-          >
-            {{ validacion.mensaje }}
-          </mat-error>
-        </mat-error>
-      </mat-form-field>
-
-      <!-- Editorial -->
-      <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
-        <mat-label>Editorial</mat-label>
-        <mat-select formControlName="editorial">
-          <mat-option
-            *ngFor="let editorial of inListaEditoriales"
-            [value]="editorial.id"
-          >
-            {{ editorial.descripcion }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngFor="let validacion of validaciones.editorial">
-          <mat-error
-            *ngIf="formulario.get('editorial').hasError(validacion.tipo)"
-          >
-            {{ validacion.mensaje }}
-          </mat-error>
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <!-- Biografia -->
-    <mat-form-field>
-      <mat-label>Biografia</mat-label>
-      <textarea matInput formControlName="biografia"></textarea>
-      <mat-error *ngFor="let validacion of validaciones.biografia">
-        <mat-error
-          *ngIf="formulario.get('biografia').hasError(validacion.tipo)"
-        >
-          {{ validacion.mensaje }}
-        </mat-error>
-      </mat-error>
-    </mat-form-field>
-
-    <!-- Botones -->
-    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-      <button mat-raised-button color="primary">Guardar</button>
-      <button
-        mat-raised-button
-        color="warn"
-        type="button"
-        (click)="limpiarFormulario()"
+      <!-- Imagen -->
+      <mat-card
+        fxFlex="1 1 calc(20% - 20px)"
+        class="card-image mat-elevation-z8"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="1.2rem"
       >
-        Cancelar
-      </button>
+        <mat-card-header fxLayout="row" fxLayoutAlign="center center">
+          <mat-card-title>Dare devil</mat-card-title>
+          <mat-card-subtitle>Matt Murdock</mat-card-subtitle>
+        </mat-card-header>
+
+        <div style="padding: 0.5rem; margin-top: 0.5rem">
+          <img mat-card-image [src]="imagenSeleccionada" />
+        </div>
+
+        <mat-card-content> <span>Abril de 1964</span> </mat-card-content>
+      </mat-card>
+      <!-- contenedor Formulario -->
+      <div fxFlex="1 1 calc(80% - 20px)" fxLayout="column" fxLayoutGap="20px">
+        <!-- Nombre del super heroe || Nombre del personaje || Fecha de la primera introduccion -->
+        <div fxLayout="row" fxLayoutGap="20px">
+          <!-- Nombre del super heroe -->
+          <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
+            <mat-label>Nombre del super heroe</mat-label>
+            <input matInput formControlName="nombreSuperHeroe" />
+            <mat-error *ngFor="let validacion of validaciones.nombreSuperHeroe">
+              <mat-error
+                *ngIf="
+                  formulario.get('nombreSuperHeroe').hasError(validacion.tipo)
+                "
+              >
+                {{ validacion.mensaje }}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Nombre del personaje -->
+          <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
+            <mat-label>Nombre del personaje</mat-label>
+            <input matInput formControlName="nombrePersonaje" />
+            <mat-error *ngFor="let validacion of validaciones.nombrePersonaje">
+              <mat-error
+                *ngIf="
+                  formulario.get('nombrePersonaje').hasError(validacion.tipo)
+                "
+              >
+                {{ validacion.mensaje }}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Fecha de la primera aparicion -->
+          <mat-form-field fxFlex="1 1 calc(33.3% - 20px)">
+            <mat-label>Fecha de la primera aparición</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="fechaPrimeraAparicion"
+              readonly
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error
+              *ngFor="let validacion of validaciones.fechaPrimeraAparicion"
+            >
+              <mat-error
+                *ngIf="
+                  formulario
+                    .get('fechaPrimeraAparicion')
+                    .hasError(validacion.tipo)
+                "
+              >
+                {{ validacion.mensaje }}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Ciudad de origen || Tipo de personaje || Editorial -->
+        <div fxLayout="row" fxLayoutGap="20px">
+          <!-- Ciudad de origen -->
+          <mat-form-field fxFlex="1 1 calc(25% - 20px)">
+            <mat-label>Ciudad de origen</mat-label>
+            <input matInput formControlName="ciudadOrigen" />
+            <mat-error *ngFor="let validacion of validaciones.ciudadOrigen">
+              <mat-error
+                *ngIf="formulario.get('ciudadOrigen').hasError(validacion.tipo)"
+              >
+                {{ validacion.mensaje }}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Imagen -->
+          <mat-form-field fxFlex="1 1 calc(25% - 20px)">
+            <mat-label>Imagen del personaje</mat-label>
+            <mat-select
+              formControlName="imagen"
+              (selectionChange)="seleccionarImagen($event.value)"
+            >
+              <mat-option
+                *ngFor="let personaje of inListaImagenes"
+                [value]="personaje.ruta"
+              >
+                {{ personaje.descripcion }}
+              </mat-option>
+            </mat-select>
+
+            <mat-error *ngFor="let validacion of validaciones.tipoPersonaje">
+              <mat-error
+                *ngIf="
+                  formulario.get('tipoPersonaje').hasError(validacion.tipo)
+                "
+              >
+                {{ validacion.mensaje }}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Tipo de personaje -->
+          <mat-form-field fxFlex="1 1 calc(25% - 20px)">
+            <mat-label>Tipo de personaje</mat-label>
+            <mat-select formControlName="tipoPersonaje">
+              <mat-option
+                *ngFor="let personaje of inTiposDePersonajes"
+                [value]="personaje.id"
+              >
+                {{ personaje.descripcion }}
+              </mat-option>
+            </mat-select>
+
+            <mat-error *ngFor="let validacion of validaciones.tipoPersonaje">
+              <mat-error
+                *ngIf="
+                  formulario.get('tipoPersonaje').hasError(validacion.tipo)
+                "
+              >
+                {{ validacion.mensaje }}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Editorial -->
+          <mat-form-field fxFlex="1 1 calc(25% - 20px)">
+            <mat-label>Editorial</mat-label>
+            <mat-select formControlName="editorial">
+              <mat-option
+                *ngFor="let editorial of inListaEditoriales"
+                [value]="editorial.id"
+              >
+                {{ editorial.descripcion }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngFor="let validacion of validaciones.editorial">
+              <mat-error
+                *ngIf="formulario.get('editorial').hasError(validacion.tipo)"
+              >
+                {{ validacion.mensaje }}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Biografia -->
+        <mat-form-field>
+          <mat-label>Biografia</mat-label>
+          <textarea
+            matInput
+            [matAutosizeMinRows]="1"
+            [matAutosizeMaxRows]="5"
+            [matTextareaAutosize]="true"
+            formControlName="biografia"
+          ></textarea>
+          <mat-error *ngFor="let validacion of validaciones.biografia">
+            <mat-error
+              *ngIf="formulario.get('biografia').hasError(validacion.tipo)"
+            >
+              {{ validacion.mensaje }}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Botones -->
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+          <button mat-raised-button color="primary">Guardar</button>
+          <button
+            mat-raised-button
+            color="warn"
+            type="button"
+            (click)="limpiarFormulario()"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</app-contenedor>

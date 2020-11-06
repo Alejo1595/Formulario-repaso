@@ -27,6 +27,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 // Flexlayout
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTableModule,
     MatToolbarModule,
     MatAutocompleteModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SharedModule
   ],
   providers: [PersonajeService]
 })

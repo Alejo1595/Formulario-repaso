@@ -14,5 +14,6 @@ export interface CatalogoModelo {
     id: number;
     codigo: string;
     descripcion: string;
+    ruta?: string;
 }
 

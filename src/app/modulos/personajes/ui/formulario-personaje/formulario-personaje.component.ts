@@ -11,6 +11,7 @@ export class FormularioPersonajeComponent implements OnInit, OnDestroy {
 
   @Input() inTiposDePersonajes: CatalogoModelo[];
   @Input() inListaEditoriales: CatalogoModelo[];
+  @Input() inListaImagenes: CatalogoModelo[];
 
   @Output() outDatosPersonajes = new EventEmitter<PersonajesModelo>();
 
@@ -18,12 +19,17 @@ export class FormularioPersonajeComponent implements OnInit, OnDestroy {
 
   public formulario: FormGroup;
   public validaciones;
+  public imagenSeleccionada: string;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.crearFormulario();
     this.crearValidaciones();
+  }
+
+  public seleccionarImagen(imagenSeleccionada: string): void {
+    this.imagenSeleccionada = imagenSeleccionada;
   }
 
   public submitFormulario(): void {
@@ -35,8 +41,8 @@ export class FormularioPersonajeComponent implements OnInit, OnDestroy {
   }
 
   public limpiarFormulario(): void {
-    // this.formulario.reset();
     this.formu.resetForm();
+    this.imagenSeleccionada = null;
   }
 
   ngOnDestroy(): void {
@@ -50,6 +56,7 @@ export class FormularioPersonajeComponent implements OnInit, OnDestroy {
       nombrePersonaje: [null, Validators.required],
       fechaPrimeraAparicion: [null, Validators.required],
       ciudadOrigen: [null, Validators.required],
+      imagen: [null, Validators.required],
       editorial: [null, Validators.required],
       tipoPersonaje: [null, Validators.required],
       biografia: [null, Validators.required],
@@ -62,6 +69,7 @@ export class FormularioPersonajeComponent implements OnInit, OnDestroy {
       nombrePersonaje: [{ tipo: 'required', mensaje: 'Campo obligatorio' }],
       fechaPrimeraAparicion: [{ tipo: 'required', mensaje: 'Campo obligatorio' }],
       ciudadOrigen: [{ tipo: 'required', mensaje: 'Campo obligatorio' }],
+      imagen: [{ tipo: 'required', mensaje: 'Campo obligatorio' }],
       biografia: [{ tipo: 'required', mensaje: 'Campo obligatorio' }],
       editorial: [{ tipo: 'required', mensaje: 'Campo obligatorio' }],
       tipoPersonaje: [{ tipo: 'required', mensaje: 'Campo obligatorio' }],
