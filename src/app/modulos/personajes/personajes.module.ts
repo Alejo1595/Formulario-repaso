@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { PersonajesRoutingModule } from './personajes-routing.module';
 
 import { PersonajeComponent } from './components/personaje/personaje.component';
